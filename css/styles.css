@@ -1,0 +1,76 @@
+body {
+  background: linear-gradient(135deg, #e9e3ed 0%, #adb9ca 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif; /* Changed to Open Sans for body text */
+  color: #333;
+}
+
+.page {
+  width: 95%;
+  max-width: 1500px; /* Increased width to reduce side spacing */
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.main-title {
+  font-family: 'Montserrat', sans-serif; /* Changed to Montserrat for main title */
+  font-size: 3.5em;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #294f7e;
+}
+
+.description {
+  font-family: 'Open Sans', sans-serif; /* Explicitly set for consistency */
+  text-align: center;
+  margin-bottom: 50px;
+  color: #666;
+  font-weight:600;
+}
+
+/* Style for h2 elements within vis-containers for consistency */
+.vis-container h2 {
+  font-family: 'Montserrat', sans-serif; /* Montserrat for section headings */
+  font-weight: 700; /* Bolder for emphasis */
+  font-size: 1.8em; /* Appropriate size for section titles */
+  color: #333; /* Ensure good contrast */
+  margin-top: 0; /* Adjust spacing */
+  margin-bottom: 15px;
+}
+
+.vis-container {
+  /* Glassmorphism effect */
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Blurs the content behind the element */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Increased opacity for better visibility */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1); /* More pronounced, modern shadow */
+
+  margin: 10px;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.flex-container {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Ensures the column units themselves allow children to stretch - covering all unit types */
+[class*="pure-u-"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-column p {
+  font-family: 'Open Sans', sans-serif; /* Explicitly set for consistency */
+  line-height: 1.6;
+}
+
+.vis-container > div {
+  width: 100%;
+}

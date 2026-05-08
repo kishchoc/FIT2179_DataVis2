@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 400,
+  "title": "Capital City Weather Overview",
+  "projection": {"type": "equirectangular"},
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2016,
+      "bind": {
+        "input": "range",
+        "min": 2008,
+        "max": 2017,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {"type": "geoshape", "fill": "#f0f0f0", "stroke": "black", "strokeWidth": 0.5}
+    },
+    {
+      "data": {"url": "data/cleaned_weather_data.csv"},
+      "transform": [{"filter": "datum.Year == Year_selection"}],
+      "mark": {"type": "circle"},
+      "encoding": {
+        "longitude": {"field": "Long", "type": "quantitative"},
+        "latitude": {"field": "Lat", "type": "quantitative"},
+        "tooltip": [
+          {"field": "City", "type": "nominal", "title": "City"},
+          {"field": "Total_Rainfall", "type": "quantitative", "title": "Annual Rainfall (mm)", "format": ","},
+          {"field": "Average_Max_Temp", "type": "quantitative", "title": "Avg Max Temp (°C)", "format": ","}
+        ],
+        "size": {
+          "field": "Total_Rainfall",
+          "type": "quantitative",
+          "title": "Annual Rainfall (mm)",
+          "scale": {"domain": [0, 2500], "range": [50, 1000]}
+        },
+        "color": {
+          "field": "Average_Max_Temp",
+          "type": "quantitative",
+          "title": "Avg Temp (°C)",
+          "scale": {
+            "scheme": "yelloworangered",
+            "domain": [15, 35]
+          }
+        }
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null, "fill": "turquoise"}}
+}
