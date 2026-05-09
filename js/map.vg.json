@@ -2,8 +2,22 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 400,
-  "title": "Capital City Weather Overview",
-  "projection": {"type": "equirectangular"},
+  "title": {
+    "text": "Capital City Weather Overview",
+    "fontSize": 20,
+    "font": "Montserrat",
+    "anchor": "start",
+    "color": "#294f7e",
+    "subtitle": "Spatial distribution of rainfall and temperature across Australian capitals (2008-2017).",
+    "subtitleFont": "Open Sans",
+    "subtitleFontSize": 12,
+    "subtitlePadding": 10
+  },
+  "projection": {
+    "type": "equirectangular",
+    "center": [133.5, -28],
+    "scale": 600
+  },
   "params": [
     {
       "name": "Year_selection",
@@ -55,5 +69,5 @@
       }
     }
   ],
-  "config": {"view": {"stroke": null, "fill": "turquoise"}}
+  "config": {"view": {"stroke": null}}
 }

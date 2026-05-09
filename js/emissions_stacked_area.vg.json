@@ -1,0 +1,67 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Greenhouse Gas Emissions by Sector",
+    "fontSize": 20,
+    "font": "Montserrat",
+    "anchor": "start",
+    "color": "#294f7e",
+    "subtitle": "Trends in Australia's emissions contributions across different industrial sectors.",
+    "subtitleFont": "Open Sans",
+    "subtitleFontSize": 12,
+    "subtitlePadding": 10
+  },
+  "width": "container",
+  "height": 400,
+  "data": {
+    "url": "data/australia_emissions_by_sector.csv"
+  },
+  "mark": {
+    "type": "area",
+    "line": true,
+    "point": true
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "title": "Year",
+      "axis": {"format": "d", "grid": false}
+    },
+    "y": {
+      "field": "MtCO2e",
+      "type": "quantitative",
+      "title": "Emissions (Mt CO2-e)",
+      "stack": true
+      
+    },
+    "color": {
+      "field": "Sector",
+      "type": "nominal",
+      "title": "Sector",
+      "scale": {"scheme": "tableau10"}
+    },
+    "tooltip": [
+      {"field": "Year", "type": "quantitative", "title": "Year"},
+      {"field": "Sector", "type": "nominal", "title": "Sector"},
+      {
+        "field": "MtCO2e",
+        "type": "quantitative",
+        "title": "Emissions (Mt CO2-e)",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {
+    "font": "Open Sans",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 13
+    },
+    "legend": {
+      "titleFontSize": 12,
+      "labelFontSize": 11
+    },
+    "view": {"stroke": null}
+  }
+}

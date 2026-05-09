@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Annual Temperature Anomaly in Australia",
+    "fontSize": 20,
+    "font": "Montserrat",
+    "anchor": "start",
+    "color": "#294f7e",
+    "subtitle": "Interactive exploration of temperature trends from 1910 to 2023.",
+    "subtitleFont": "Open Sans",
+    "subtitleFontSize": 12,
+    "subtitlePadding": 10
+  },
+  "width": "container",
+  "height": 400,
+  "data": {
+    "url": "data/australia_annual_climate_trends.csv"
+  },
+  "params": [
+    {
+      "name": "year_filter",
+      "value": 1910,
+      "bind": {
+        "input": "range",
+        "min": 1910,
+        "max": 2020,
+        "step": 1,
+        "name": "Starting Year: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Year >= year_filter"}
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#294f7e",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "title": "Year",
+          "axis": {"format": "d", "grid": false}
+        },
+        "y": {
+          "field": "Anomaly",
+          "type": "quantitative",
+          "title": "Temp Anomaly (°C)",
+          "scale": {"zero": false}
+        }
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 60, "color": "#294f7e"},
+      "encoding": {
+        "x": {"field": "Year", "type": "quantitative"},
+        "y": {"field": "Anomaly", "type": "quantitative"},
+        "tooltip": [
+          {"field": "Year", "type": "quantitative", "title": "Year"},
+          {"field": "Anomaly", "type": "quantitative", "title": "Temp Anomaly (°C)", "format": ".2f"},
+          {"field": "Rainfall_mm", "type": "quantitative", "title": "Rainfall (mm)", "format": ".1f"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "font": "Open Sans",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 13
+    },
+    "view": {"stroke": null}
+  }
+}
