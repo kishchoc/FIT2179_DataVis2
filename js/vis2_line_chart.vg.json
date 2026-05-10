@@ -1,12 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Annual Temperature Anomaly in Australia",
+    "text": "Annual Rainfall Trends in Australia",
     "fontSize": 20,
     "font": "Montserrat",
     "anchor": "start",
     "color": "#294f7e",
-    "subtitle": "Interactive exploration of temperature trends from 1910 to 2023.",
+    "subtitle": "Interactive exploration of annual rainfall patterns from 1910 to 2023.",
     "subtitleFont": "Open Sans",
     "subtitleFontSize": 12,
     "subtitlePadding": 10
@@ -48,9 +48,9 @@
           "axis": {"format": "d", "grid": false}
         },
         "y": {
-          "field": "Anomaly",
+          "field": "Rainfall_mm",
           "type": "quantitative",
-          "title": "Temp Anomaly (°C)",
+          "title": "Annual Rainfall (mm)",
           "scale": {"zero": false}
         }
       }
@@ -59,10 +59,9 @@
       "mark": {"type": "point", "filled": true, "size": 60, "color": "#294f7e"},
       "encoding": {
         "x": {"field": "Year", "type": "quantitative"},
-        "y": {"field": "Anomaly", "type": "quantitative"},
+        "y": {"field": "Rainfall_mm", "type": "quantitative"},
         "tooltip": [
           {"field": "Year", "type": "quantitative", "title": "Year"},
-          {"field": "Anomaly", "type": "quantitative", "title": "Temp Anomaly (°C)", "format": ".2f"},
           {"field": "Rainfall_mm", "type": "quantitative", "title": "Rainfall (mm)", "format": ".1f"}
         ]
       }

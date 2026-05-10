@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Annual Temperature Anomaly Heatmap",
+    "subtitle": "Annual temperature deviation from historical average (1910-2023).",
+    "fontSize": 20,
+    "font": "Montserrat",
+    "anchor": "start",
+    "color": "#294f7e",
+    "subtitleFont": "Open Sans",
+    "subtitleFontSize": 12,
+    "subtitlePadding": 10
+  },
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/australia_annual_climate_trends.csv"
+  },
+  "transform": [
+    {
+      "calculate": "floor(datum.Year / 10) * 10",
+      "as": "Decade"
+    },
+    {
+      "calculate": "datum.Year % 10",
+      "as": "Year_within_Decade"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "tooltip": true,
+    "stroke": "white",
+    "strokeWidth": 0.5
+  },
+  "encoding": {
+    "x": {
+      "field": "Year_within_Decade",
+      "type": "ordinal",
+      "title": "Year of Decade (0-9)",
+      "axis": {
+        "labelAngle": 0,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "y": {
+      "field": "Decade",
+      "type": "ordinal",
+      "title": "Decade",
+      "sort": "descending",
+      "axis": {
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "color": {
+      "field": "Anomaly",
+      "type": "quantitative",
+      "title": "Anomaly (°C)",
+      "scale": {
+        "scheme": "redblue",
+        "reverse": true,
+        "domainMid": 0
+      },
+      "legend": {
+        "direction": "horizontal",
+        "orient": "bottom",
+        "gradientLength": 300
+      }
+    },
+    "tooltip": [
+      {"field": "Year", "type": "quantitative", "title": "Year"},
+      {"field": "Anomaly", "type": "quantitative", "title": "Anomaly (°C)", "format": ".2f"}
+    ]
+  },
+  "config": {
+    "font": "Open Sans",
+    "view": {"stroke": null},
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 13
+    }
+  }
+}
