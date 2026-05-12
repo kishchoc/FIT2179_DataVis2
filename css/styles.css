@@ -50,6 +50,7 @@ body {
   margin: 10px;
   padding: 20px;
   border-radius: 15px;
+  
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -69,8 +70,14 @@ body {
 .text-column p {
   font-family: 'Open Sans', sans-serif; /* Explicitly set for consistency */
   line-height: 1.6;
+  text-align: left;
+}
+
+.text-column {
+  justify-content: flex-start; /* Reset vertical alignment for text */
+  align-items: flex-start;    /* Reset horizontal alignment for text */
 }
 
 .vis-container > div {
-  width: 100%;
+  width: 100%;            /* Maintains width for Vega-Lite 'container' sizing */
 }

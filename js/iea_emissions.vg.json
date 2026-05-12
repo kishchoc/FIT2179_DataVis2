@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 450,
+  "title": {
+    "text": "CO2 Emissions by Fuel Source",
+    "fontSize": 20,
+    "font": "Montserrat",
+    "anchor": "start",
+    "color": "#294f7e",
+    "subtitle": "Percentage breakdown of Australia's CO2 emissions by primary fuel type (2000-2023).",
+    "subtitleFont": "Open Sans",
+    "subtitleFontSize": 12,
+    "subtitlePadding": 10
+  },
+  "data": {
+    "url": "data/International Energy Agency - CO2 emissions by fuel in Australia.csv"
+  },
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2023,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2023,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "transform": [
+    {"calculate": "toNumber(datum.Year)", "as": "Year_num"},
+    {"filter": "datum.Year_num == Year_selection"},
+    {"filter": "datum.Value > 0"}
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "arc", 
+        "innerRadius": 80, 
+        "outerRadius": 130,
+        "stroke": "#fff",
+        "tooltip": true
+      },
+      "encoding": {
+        "theta": {"field": "Value", "type": "quantitative"},
+        "color": {
+          "field": "CO2 emissions by fuel in Australia",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Coal", "Oil", "Natural gas", "Other"],
+            "range": ["#424242", "#d73027", "#f46d43", "#abd9e9"]
+          },
+          "legend": {
+            "title": "Fuel Type", 
+            "orient": "bottom", 
+            "columns": 2,
+            "labelFont": "Open Sans",
+            "titleFont": "Montserrat"
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "type": "quantitative"},
+          {"field": "CO2 emissions by fuel in Australia", "type": "nominal", "title": "Fuel"},
+          {"field": "Value", "type": "quantitative", "title": "CO2 (Mt)", "format": ".2f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "radius": 0,
+        "fontSize": 24,
+        "fontWeight": "bold",
+        "font": "Montserrat",
+        "color": "#294f7e"
+      },
+      "encoding": {
+        "text": {
+          "aggregate": "sum",
+          "field": "Value",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Open Sans",
+    "view": {"stroke": null},
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    }
+  }
+}
