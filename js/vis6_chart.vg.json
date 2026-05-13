@@ -1,0 +1,76 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "CO2 emissions per capita in Australia",
+    "fontSize": 20,
+    "font": "Montserrat",
+    "anchor": "start",
+    "color": "#294f7e",
+    "subtitle": "Interactive exploration of annual CO2 emissions patterns from 2000 to 2023.",
+    "subtitleFont": "Open Sans",
+    "subtitleFontSize": 12,
+    "subtitlePadding": 10
+  },
+  "width": "container",
+  "height": 400,
+  "data": {
+    "url": "data/International Energy Agency - CO2 emissions per capita, Australia.csv"
+  },
+  "params": [
+    {
+      "name": "year_filter",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2023,
+        "step": 1,
+        "name": "Starting Year: "
+      }
+    }
+  ],
+  "transform": [
+    {"calculate": "toNumber(datum.Year)", "as": "Year_num"},
+    {"filter": "datum.Year_num >= year_filter"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "Year_num",
+      "type": "quantitative",
+      "title": "Year",
+      "axis": {"format": "d", "grid": false}
+    },
+    "y": {
+      "field": "CO2 emissions per capita, Australia",
+      "type": "quantitative",
+      "title": "CO2 emissions (tonnes per capita)",
+      "scale": {"domain": [10, 20]}
+    },
+    "tooltip": [
+      {"field": "Year_num", "type": "quantitative", "title": "Year"},
+      {"field": "CO2 emissions per capita, Australia", "type": "quantitative", "title": "CO2 Emissions", "format": ".2f"}
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#f90505",
+        "line": true,
+        "opacity": 0.3,
+        "interpolate": "monotone"
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 60, "color": "#f90505"}
+    }
+  ],
+  "config": {
+    "font": "Open Sans",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 13
+    },
+    "view": {"stroke": null}
+  }
+}
