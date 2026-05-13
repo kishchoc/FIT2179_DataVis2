@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "CO2 Emissions Breakdown by Sector",
+    "subtitle": "Annual distribution of CO2 emissions across different Australian sectors (2000-2023).",
+    "fontSize": 20,
+    "font": "Montserrat",
+    "anchor": "start",
+    "color": "#294f7e",
+    "subtitleFont": "Open Sans",
+    "subtitleFontSize": 12,
+    "subtitlePadding": 10
+  },
+  "width": "container",
+  "height": 500,
+  "data": {
+    "url": "data/International Energy Agency - CO2 emissions by sector in Australia.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "aggregate": "sum",
+      "field": "Value",
+      "type": "quantitative",
+      "title": "CO2 Emissions (Mt CO2)"
+    },
+    "y": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "color": {
+      "field": "CO2 emissions by sector in Australia",
+      "type": "nominal",
+      "title": "Sector",
+      "scale": {
+        "scheme": "tableau10"
+      }
+    },
+    "tooltip": [
+      {"field": "Year", "type": "ordinal", "title": "Year"},
+      {"field": "CO2 emissions by sector in Australia", "type": "nominal", "title": "Sector"},
+      {"field": "Value", "type": "quantitative", "title": "Emissions (Mt CO2)", "format": ".2f"}
+    ]
+  },
+  "config": {
+    "font": "Open Sans",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 13
+    },
+    "view": {"stroke": null}
+  }
+}

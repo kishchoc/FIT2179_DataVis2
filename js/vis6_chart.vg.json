@@ -16,22 +16,8 @@
   "data": {
     "url": "data/International Energy Agency - CO2 emissions per capita, Australia.csv"
   },
-  "params": [
-    {
-      "name": "year_filter",
-      "value": 2000,
-      "bind": {
-        "input": "range",
-        "min": 2000,
-        "max": 2023,
-        "step": 1,
-        "name": "Starting Year: "
-      }
-    }
-  ],
   "transform": [
-    {"calculate": "toNumber(datum.Year)", "as": "Year_num"},
-    {"filter": "datum.Year_num >= year_filter"}
+    {"calculate": "toNumber(datum.Year)", "as": "Year_num"}
   ],
   "encoding": {
     "x": {
@@ -62,7 +48,7 @@
       }
     },
     {
-      "mark": {"type": "point", "filled": true, "size": 60, "color": "#f90505"}
+      "mark": {"type": "point", "filled": true, "size": 60, "color": "#000000"}
     }
   ],
   "config": {
